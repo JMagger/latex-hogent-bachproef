@@ -15,37 +15,95 @@
 \section{Inleiding}%
 \label{sec:inleiding}
 
-Waarover zal je bachelorproef gaan? Introduceer het thema en zorg dat volgende zaken zeker duidelijk aanwezig zijn:
+%Waarover zal je bachelorproef gaan? Introduceer het thema en zorg dat volgende zaken zeker duidelijk aanwezig zijn:
 
-\begin{itemize}
-  \item kaderen thema
-  \item de doelgroep
-  \item de probleemstelling en (centrale) onderzoeksvraag
-  \item de onderzoeksdoelstelling
-\end{itemize}
+%\begin{itemize}
+%\item kaderen thema (Diensten overschakelen naar 5G)
+%\item de doelgroep (HOGENT en AUGent)
+%\item de probleemstelling en (centrale) onderzoeksvraag
+% \item de onderzoeksdoelstelling
+%\end{itemize}
 
-Denk er aan: een typische bachelorproef is \textit{toegepast onderzoek}, wat betekent dat je start vanuit een concrete probleemsituatie in bedrijfscontext, een \textbf{casus}. Het is belangrijk om je onderwerp goed af te bakenen: je gaat voor die \textit{ene specifieke probleemsituatie} op zoek naar een goede oplossing, op basis van de huidige kennis in het vakgebied.
+%Deze bachelorproef richt zich op de overstap van bekabelde apparatuur en wifi van de parking naar het 5G-netwerk voor facilitair beheer van Hogeschool Gent en biedt services aan zoals computerhosting dankzij de Virtual IT Company. Momenteel draaien de diensten zoals klimaatbeheersing, inbraakbeveiliging, branddetectie, verlichting, toegangscontrole en CO-metingen op een traditioneler, bekabeld netwerk. Het probleem is echter dat er zowel veel druk op het huidige netwerk gezet wordt door een groeiend aantal applicaties als dat veel apparaten ook een internetverbinding nodig hebben, en heel wat van deze diensten via de cloud beheerd moeten worden. Ook flexibiliteit wordt beperkt door de fysieke bekabeling, wat leidt tot uitdagingen in beheer en schaalbaarheid, en de onderhoudskosten zijn niet optimaal. Voor de migratie naar het nieuwe netwerk komen er ook vragen, zoals welke diensten momenteel negatief geïmpacteerd worden door het gebruik van het bekabelde systeem en in welke mate, welke van deze diensten gemigreerd kunnen worden en wat de implicaties hiervan zijn. Deze bachelorproef wil een antwoord op die vragen geven.
 
-De doelgroep moet ook concreet en duidelijk zijn, dus geen algemene of vaag gedefinieerde groepen zoals \emph{bedrijven}, \emph{developers}, \emph{Vlamingen}, enz. Je richt je in elk geval op it-professionals, een bachelorproef is geen populariserende tekst. Eén specifiek bedrijf (die te maken hebben met een concrete probleemsituatie) is dus beter dan \emph{bedrijven} in het algemeen.
+\subsection{Probleemstelling en onderzoeksvraag}
+Deze bachelorproef richt zich op het onderzoek over deploymentprocedures van branches voor Securex mainframes. Het Europees bedrijf biedt HR-diensten enn sociale administratie aan voor zelfstandigen, werkgevers en organisaties. Het ondersteunt deze bedrijven met het beheer van personeel, loonadministratie, sociale verplichtingen en meer. Deze diensten steunen op kritische applicaties waarbij stabiliteit, traceerbaarheid en codewijzigingen essentieel zijn. 
 
-Formuleer duidelijk de onderzoeksvraag! De begeleiders lezen nog steeds te veel voorstellen waarin we geen onderzoeksvraag terugvinden.
+Het probleem is dat deze diensten draaien op de inflexibele Subversion als versiebeheersysteem, het biedt beperkte ondersteuning voor branch- en mergebeheer, waardoor parallel ontwikkelen en gecontroleerd deployen moeilijk maakt. Securex wil hiervan afbouwen en over schakelen naar Git waar branch en merge capabilities mogelijk zijn. Echter roept de implementatie nog verschillende vragen op, met name op het vlak van een geschikte branchingstrategie en het aanpassen van de huidige deploymentprocedures naar een branch-gebaseerde manier binnen de mainframecontext. Op basis van deze probleemstelling komt de onderzoeksvraag: ``hoe kan Git-branching binnen IDz worden ingezet voor gecontroleerde en traceerbare deployments over meerdere omgevingen?''.
 
-Schrijf ook iets over de doelstelling. Wat zie je als het concrete eindresultaat van je onderzoek, naast de uitgeschreven scriptie? Is het een proof-of-concept, een rapport met aanbevelingen, \ldots Met welk eindresultaat kan je je bachelorproef als een succes beschouwen?
+%Het huidige facilitair beheer van Hogeschool Gent bestaat uit het bekabelde netwerk en een deel dat op wifi draait, waarbij nieuwe 5G-netwerken begin dit jaar zijn toegevoegd. Voorlopig geeft de huidige infrastructuur operationele beperkingen op het vlak van flexibiliteit, schaalbaarheid en beheerbaarheid. Dankzij 5G ontstaat de mogelijkheid om het facilitair beheer en haar diensten draadloos te draaien en te beheren. Het zou ook een groter aanbod op uitbreidingen geven en zou de kosten ook moeten verlagen. Hierbij komt er ook vraag om meer connectiviteit te verkrijgen voor de parkings, waar er ook commerciële plannen zijn om ze mogelijk te verhuren. Bij de laadpalen die staan en nog toegevoegd moeten worden is er voorlopig nog geen 5G connectiviteit om aan te kunnen spreken met een cloud, slagbomen zijn voorlopig ook nog bekabeld en er is ook vraag naar parkingcamera's met kentekenherkenning.
+%Echter, de implementatie roept verschillende vragen op, zoals welke diensten voorlopig operationele beperkingen ondervinden door het gebruik van het traditionele netwerk, welke diensten geschikt zijn voor overstap en of er een impact bestaat op de bestaande infrastructuur. Ook de voordelen en nadelen hiervan zijn nog niet volledig in kaart gebracht. Op basis van deze probleemstelling komt de onderzoeksvraag: ''welke bestaande apparatuur op de parking van Hogeschool Gent kan geëmigreerd worden met 5G?''
+
+\subsection{Subvragen}
+- Welke Git-branchingstrategieën zijn geschikt? \\
+- Hoe beïnvloedt werken met branches de deploymentprocedures? \\
+- Hoe wordt deze gepusht door development, testing en accept? \\
+- Is het mogelijk om op dat moment bij te houden wat waar zit? \\
+
+\subsection{Doelgroep}
+Primaire doelgroep is Securex en de gebruikers daarvan. De secundaire groep zijn mainframe bedrijven die een gelijkaardige overstap overwegen of al hebben gemaakt.
+
+\subsection{Onderzoeksdoelstelling}
+Voor de doelstelling wordt er een reproduceerbare Git deploymentaanpaak ontworpen en geevalueerd, die bijdraagt aan beter versiebeheer en gecontroleerde deployments binnen IDz, waaronder verbetering van versiebeheer, ondersteuning aan consistente deployments en een mogelijkheid voor geschiedenis in de wijzigingen van de code. Dit kan ook verder gebruikt worden voor inzicht van het werken met Git-branches in de mainframe en kan als basis dienen voor toekomstige implementaties en verbeteringen voor Securex.
+
+
+%Voor de doelstelling wordt er een rapport opgesteld waarin veiligheidsimplicaties, impact op resources en de prestatie vastgesteld worden bij de migratie naar 5G. Hiermee zal het onderzoek, met een nadruk op het beheer en draaien van de diensten via het internet, de mogelijkheid en de voordelen van het netwerk evalueren ten opzichte van de bestaande infrastructuur. Daarnaast zal er ook een documentatie bijgehouden worden van alle stappen van de implementatie. Zo kan er een proof-of-concept gemaakt worden met de efficiëntie van het 5G-netwerk. Zo kunnen er verdere beslissingen genomen worden door Hogeschool Gent in verband met netwerk uitbreidingen.
+
+%Denk er aan: een typische bachelorproef is \textit{toegepast onderzoek}, wat betekent dat je start vanuit een concrete probleemsituatie in bedrijfscontext, een \textbf{casus}. Het is belangrijk om je onderwerp goed af te bakenen: je gaat voor die \textit{ene specifieke probleemsituatie} op zoek naar een goede oplossing, op basis van de huidige kennis in het vakgebied.
+
+%De doelgroep moet ook concreet en duidelijk zijn, dus geen algemene of vaag gedefinieerde groepen zoals \emph{bedrijven}, \emph{developers}, \emph{Vlamingen}, enz. Je richt je in elk geval op it-professionals, een bachelorproef is geen populariserende tekst. Eén specifiek bedrijf (die te maken hebben met een concrete probleemsituatie) is dus beter dan \emph{bedrijven} in het algemeen.
+
+%Formuleer duidelijk de onderzoeksvraag! De begeleiders lezen nog steeds te veel voorstellen waarin we geen onderzoeksvraag terugvinden.
+
+%Schrijf ook iets over de doelstelling. Wat zie je als het concrete eindresultaat van je onderzoek, naast de uitgeschreven scriptie? Is het een proof-of-concept, een rapport met aanbevelingen, \ldots Met welk eindresultaat kan je je bachelorproef als een succes beschouwen?
 
 %---------- Stand van zaken ---------------------------------------------------
 
 \section{Literatuurstudie}%
 \label{sec:literatuurstudie}
+\subsection{Introductie Git}
 
-Hier beschrijf je de \emph{state-of-the-art} rondom je gekozen onderzoeksdomein, d.w.z.\ een inleidende, doorlopende tekst over het onderzoeksdomein van je bachelorproef. Je steunt daarbij heel sterk op de professionele \emph{vakliteratuur}, en niet zozeer op populariserende teksten voor een breed publiek. Wat is de huidige stand van zaken in dit domein, en wat zijn nog eventuele open vragen (die misschien de aanleiding waren tot je onderzoeksvraag!)?
+Git is een open-source en gratis gedistribueerd versiebeheersysteem dat gebruikt wordt voor het opvolgen van wijzigingen in code en digitale bestanden. Vergeleken met Apache's gecentraliseerde versiebeheersysteem Subversion dat Securex momenteel gebruikt, kan er gewerkt worden met lokale kopies voor ontwikkelaars. Wijzigingen kunnen lokaal getest en gedraait worden, wat flexibiliteit verhoogt gezien er geen verbinding nodig is met een centrale server. Een kern van Git zijn de branches: ze maken het mogelijk om parallel aan de code te werken zonder dat de basis beïnvloed wordt dankzij merging. Dit laat ze toe om afzonderlijk ontwikkeld te worden om daarna aan de basis toegevoegd te worden. Ook volgt Git elke wijziging op, zodat een geschiedenis beschikbaar is.
 
-Je mag de titel van deze sectie ook aanpassen (literatuurstudie, stand van zaken, enz.). Zijn er al gelijkaardige onderzoeken gevoerd? Wat concluderen ze? Wat is het verschil met jouw onderzoek?
+\subsection{Securex}
+Securex draait momenteel op hun mainframes Apache's Subversion, een gecentraliseerde versiebeheersysteem. Ze verwachten om dit jaar een pilot-migratie van Subversion naar Git.
 
-Verwijs bij elke introductie van een term of bewering over het domein naar de vakliteratuur, bijvoorbeeld~\autocite{Hykes2013}! Denk zeker goed na welke werken je refereert en waarom.
+\subsection{Branches Git}
 
-Draag zorg voor correcte literatuurverwijzingen! Een bronvermelding hoort thuis \emph{binnen} de zin waar je je op die bron baseert, dus niet er buiten! Maak meteen een verwijzing als je gebruik maakt van een bron. Doe dit dus \emph{niet} aan het einde van een lange paragraaf. Baseer nooit teveel aansluitende tekst op eenzelfde bron.
 
-Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle nodige info aanwezig is om de bron terug te vinden (zoals uitvoerig besproken in de lessen Research Methods).
+
+%Draadloze netwerken bieden meer vrijheid op het vlak van flexibiliteit, schaalbaarheid en beheerbaarheid. Deze netwerken zijn meestal verbonden met het internet en de toestellen worden 'Internet of Things' genoemd. Dankzij protocollen zoals Wi-Fi, Zigbee en Bluetooth worden deze toestellen automatisch toegevoegd aan een bestaand netwerk zonder veel input van een mens (\cite{Kasubi2021}). Dankzij een verbinding kunnen er toestellen zoals lichten, vergrendelingen, camera's en verwarming geautomatiseerd en draadloos beheerd worden. Dit kan bijvoorbeeld het voordeel geven dat de eigenaar zijn oprit bekijkt via een camera, terwijl hij ver van huis is. Ook dankzij Internet of Things kan er gemakkelijk naar het verbruik van elektriciteit gekeken worden en kan verwarming geautomatiseerd worden.
+
+%\subsection{Hogeschool Gent}
+%Voorlopig draait Hogeschool Gent op een traditioneel bekabeld en wifi-netwerk. In 2025 zijn ze begonnen met het installeren van zowel een privaat als publiek 5G-netwerk, met de hoop dat facultaire diensten op dit nieuwe netwerk zullen draaien. Deze diensten zijn en worden door meerdere firma's verkocht en onderhouden, maar Hogeschool Gent zou willen overstappen naar een universeel, open-source netwerk. De diensten die apart moeten draaien, zitten in aparte VLANs. Hogent hoopt dat deze in slices gezet kunnen worden, in plaats van complexe VLANs.
+%De liften van de campussen draaien momenteel op 2G, in 2027 worden ze verplicht door de EU om op minstens 4G te draaien. Deze zijn onder andere belangrijk voor spraakbellen en bereik (als mensen vastzitten). Deze 66 liften worden per maand gecontroleerd voor onderhoud.
+%Hun energiemonitoring zit ook nog in een opstartfase en ze zouden een systeem willen waar ze kunnen inloggen via 1 IP-adres om alles te kunnen zien, waaronder bijvoorbeeld het verbruik en de opbrengst van de zonnepanelen. Voorlopig zijn dit aparte systemen.
+%Hun bewaking staat ook nog in opstartfase met Securitas en ze zouden een manier willen om coördinaten te kunnen geven aan de bewakers tijdens een incident.
+%De brandbewaking staat ook onder verschillende platformen en leveranciers, de VLAN spreekt wel 1 beheerssysteem aan. Dit wordt gecommuniceerd door serial-to-IP-converters.
+%Een grote vraag is ook welke gebouwen en plaatsen 5G-verbinding kunnen verkrijgen, veel gebouwen zijn oud en kunnen slecht bereik hebben. Ook ligt veel apparatuur op afgelegen plaatsen, zoals kelders.
+
+%\subsection{Het traditionele netwerk}
+%Momenteel wordt onder het 'traditionele netwerk' vooral verwezen naar het bekabelde netwerk en verouderde draadloze protocollen zoals 4G of Wi-Fi 5. Bij het bekabelde netwerk ligt de problematiek voor Internet of Things vooral in dat deze toestellen eerder draadloos zijn, waardoor bekabeling het nut vermindert of zelfs volledig belemmert. Er zijn natuurlijk ook gevallen waarin een kabel juist belangrijk is voor veiligheid en betrouwbaarheid, zoals bij beveiligingscamera's. Voorlopig wordt het gebruik van 5G voor veiligheid in deze specifieke gevallen in vraag gesteld door bedrijfstakken (\cite{Zhao2021}). Door de opkomst van nieuwe generaties zoals 5G en Wi-Fi 6 willen bedrijven overschakelen van 4G of Wi-Fi 5. Deze oudere protocollen bieden te weinig bandbreedte en te hoge latentie voor bedrijfskritische applicaties, zoals het gebruik van augmented reality, virtual reality, holografie en robotica (\cite{Le2016}).
+
+%\subsection{5G}
+%Over de afgelopen jaren zijn deze draadloze protocollen voortdurend verbeterd. Hoewel er nog moeilijkheden zijn in specifieke gevallen, probeert 5G een oplossing te bieden op het gebied van lage latentie, hoge snelheid, verbeterde betrouwbaarheid, efficiëntie, verbindings- en capaciteitsdichtheid en laag energieverbruik (\cite{Ullah2019}). Met de opgesomde oplossingen wordt 5G in de medische sector gebruikt voor infrastructuur en robotchirurgie (\cite{Georgiou2021}), biedt het in de militaire wereld onafhankelijke communicatiemogelijkheid tussen machines aan (\cite{Bhardwaj2020}), satellietinternet voor gebieden zonder netwerk (\cite{Dangi2021}) en het gebruik van draadloze voertuigen (\cite{Dangi2021}).
+
+%\subsection{Network splicing}
+%Met 5G wordt ook network slicing geïntroduceerd: het fysieke netwerk kan in meerdere logische netwerkslices verdeeld worden die unieke specificaties krijgen en voor specifieke doeleinden gebruikt worden, zoals een beveiligingsnetwerk specifiek voor camera's en vergrendelingen van deuren. Hierdoor worden er alleen de benodigde resources gebruikt en zijn ze vrij voor andere slices (\cite{Wijethilaka2021}).
+%Bij het traditionele netwerk worden Virtual LANs gebruikt die het netwerk ook verdelen. Hier wordt wel alleen laag 2 gebruikt, in plaats van de volledige netwerkstack. Via network splicing is het ook mogelijk om dynamisch resources te vergroten of te verkleinen, afhankelijk van de use case. Het is ook mogelijk om de gescheiden services te leveren, zoals Enhanced Mobile Broadband, Ultra-Reliable Low-Latency Communications en Massive Machine-Type Communications.
+
+%5G introductie, use cases; wordt momenteel in de wereld gebruikt voor 
+%5G Network Slicing
+
+%Hier beschrijf je de \emph{state-of-the-art} rondom je gekozen onderzoeksdomein, d.w.z.\ een inleidende, doorlopende tekst over het onderzoeksdomein van je bachelorproef. Je steunt daarbij heel sterk op de professionele \emph{vakliteratuur}, en niet zozeer op populariserende teksten voor een breed publiek. Wat is de huidige stand van zaken in dit domein, en wat zijn nog eventuele open vragen (die misschien de aanleiding waren tot je onderzoeksvraag!)?
+
+%Je mag de titel van deze sectie ook aanpassen (literatuurstudie, stand van zaken, enz.). Zijn er al gelijkaardige onderzoeken gevoerd? Wat concluderen ze? Wat is het verschil met jouw onderzoek?
+
+%Verwijs bij elke introductie van een term of bewering over het domein naar de vakliteratuur, bijvoorbeeld~ Denk zeker goed na welke werken je refereert en waarom.
+
+%Draag zorg voor correcte literatuurverwijzingen! Een bronvermelding hoort thuis \emph{binnen} de zin waar je je op die bron baseert, dus niet er buiten! Maak meteen een verwijzing als je gebruik maakt van een bron. Doe dit dus \emph{niet} aan het einde van een lange paragraaf. Baseer nooit teveel aansluitende tekst op eenzelfde bron.
+
+%Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle nodige info aanwezig is om de bron terug te vinden (zoals uitvoerig besproken in de lessen Research Methods).
 
 % Voor literatuurverwijzingen zijn er twee belangrijke commando's:
 % \autocite{KEY} => (Auteur, jaartal) Gebruik dit als de naam van de auteur
@@ -54,31 +112,71 @@ Als je informatie over bronnen verzamelt in JabRef, zorg er dan voor dat alle no
 %   functie heeft in de zin (bv. ``Uit onderzoek door Doll & Hill (1954) bleek
 %   ...'')
 
-Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
+%Je mag deze sectie nog verder onderverdelen in subsecties als dit de structuur van de tekst kan verduidelijken.
 
 %---------- Methodologie ------------------------------------------------------
-\section{Methodologie}%
+\section{Methodologie}%b
 \label{sec:methodologie}
 
-Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
+%Voor dit onderzoek zal ik voornamelijk literatuurstudies, vergelijkende studies en experimenten of simulaties uitvoeren. Hiervoor ga ik waarschijnlijk ook hands-on aan de diensten van Hogeschool Gent zitten en bestuderen wat haalbaar is voor 5G en wat niet. Voor de tools zou het de diensten zijn, een fysieke Windows 11 laptop en mogelijks virtual machines. Dan zal hieruit uiteindelijk een proof-of-concept en een simulatie gemaakt worden.
 
-Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
+\paragraph{Fase 1}
+Dit onderzoek is opgedeeld in drie grote fasen, beginnend met de stand van zaken. In deze fase wordt een inleiding gemaakt voor Git en branching, met focus op deploymentprocessen, zo worden bestaande modellen en best practices onderzocht. Ook wordt er gekeken naar de huidige situatie over de mainframes van Securex. Dit resulteert in kennis van de huidige opstelling en situatie over Securex en Subversion.
 
-Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
+%Dit onderzoek is opgedeeld in drie grote fasen, beginnend met de stand van zaken. In deze fase wordt een inleiding gemaakt tot 5G samen met een overzicht van de bestaande diensten van het facilitair beheer van Hogeschool Gent. Dit resulteert in kennis van de huidige infrastructuur en situatie van Hogeschool Gent en 5G. Dit zal normaliter in lesweek 6 voor de belangrijkste zaken al compleet zijn, maar er kunnen nog altijd toevoegingen komen, afhankelijk van het onderzoeksverloop. Ten minste 2 interviews met dienst infrastructuur en een duidelijke situering van de huidige situatie van de parking.
+\paragraph{Fase 2}
+In de tweede fase wordt op basis van de bevindingen uit de literatuurstudie en context van Securex een Git-branchingstrategie ontworpen die aansluit bij  mainframe-omgeving. Hier worden er ook deploymentprocedures uitgewerkt die rekening houden met de noden van Securex en de doorstroom van de code. Hier wordt er ook een praktische proof-of-concept gemaakt en klein-schalig uitgevoerd in een testopstelling. 
 
-Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
+%In de tweede fase bekijkt de onderzoeker de mogelijkheden van het 5G-netwerk, dat sinds kort beschikbaar is op de campus. Er wordt gekeken welke diensten geschikt zijn om over te zetten naar 5G en welke voordelen deze kan bieden. Hier wordt gekeken via selectie op basis van criteria zoals latency-eisen, bandbreedte en vereisten voor draadloze connectie. Hieruit wordt een tabel gemaakt met criteria zoals mogelijkheid draadloos, welke functies naar 5G kunnen gezet worden en hoeveel bandbreedte het verbruikt. Elke dienst krijgt een score, en als die meer dan 50 procent gemiddeld haalt, zal die bijgehouden worden voor de migratie naar 5G. Figuur 2 toont van deze tabel een voorbeeld. De deliverable vereist ten minste 2 diensten die bijgehouden worden. Compleet tegen lesweek 9, maar kan ook nog altijd meer diensten bijnemen.
+\paragraph{Fase 3}
+In de derde fase wordt de ontworpen aanpak geëvalueerd op basis van vooraf gedefinieerde criteria, zoals reproduceerbaarheid, traceerbaarheid, beheersbaarheid en impact op het deploymentproces. De resultaten van de proof of concept of testopstelling worden geanalyseerd en vergeleken met de oorspronkelijke situatie. 
 
-Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
+Op basis van deze evaluatie worden conclusies geformuleerd en aanbevelingen gedaan voor verdere optimalisatie en mogelijke implementatie binnen Securex.
 
-Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
+%In de derde fase vindt de proof of concept plaats. De geselecteerde diensten van de tweede fase worden overgezet naar 5G in de testopzetting. Denk aan een laadpaal, slagboom of een camera met kentekenherkenning. Evaluatie wordt verkregen op vlak van prestatie, betrouwbaarheid en kosten. De resultaten worden verzameld en vergeleken met de huidige situatie. Deze deliverable vereist 1 dienst die volledig draait op 5G. Klaar tegen lesweek 12.
+
+%Op basis van deze bevindingen wordt een antwoord gegeven op de onderzoeksvraag: ``Welke diensten op de parking van Hogeschool Gent kunnen overgezet worden naar 5G en wat zijn de implicaties daarvan voor de gehele infrastructuur?''. Er zal over de beperkingen en uitdagingen besproken worden en 5G zou meer flexibiliteit, lagere kosten en een betere schaalbaarheid moeten bieden vergeleken met de huidige infrastructuur. Het eindresultaat van deze proef zal deze hypothese bevestigen of betwisten.
+
+%Deze fases worden ook in Figuur 1 voorgesteld als Gantt diagram.
+
+
+%Hier beschrijf je hoe je van plan bent het onderzoek te voeren. Welke onderzoekstechniek ga je toepassen om elk van je onderzoeksvragen te beantwoorden? Gebruik je hiervoor literatuurstudie, interviews met belanghebbenden (bv.~voor requirements-analyse), experimenten, simulaties, vergelijkende studie, risico-analyse, PoC, \ldots?
+
+%Valt je onderwerp onder één van de typische soorten bachelorproeven die besproken zijn in de lessen Research Methods (bv.\ vergelijkende studie of risico-analyse)? Zorg er dan ook voor dat we duidelijk de verschillende stappen terug vinden die we verwachten in dit soort onderzoek!
+
+%Vermijd onderzoekstechnieken die geen objectieve, meetbare resultaten kunnen opleveren. Enquêtes, bijvoorbeeld, zijn voor een bachelorproef informatica meestal \textbf{niet geschikt}. De antwoorden zijn eerder meningen dan feiten en in de praktijk blijkt het ook bijzonder moeilijk om voldoende respondenten te vinden. Studenten die een enquête willen voeren, hebben meestal ook geen goede definitie van de populatie, waardoor ook niet kan aangetoond worden dat eventuele resultaten representatief zijn.
+
+%Uit dit onderdeel moet duidelijk naar voor komen dat je bachelorproef ook technisch voldoen\-de diepgang zal bevatten. Het zou niet kloppen als een bachelorproef informatica ook door bv.\ een student marketing zou kunnen uitgevoerd worden.
+
+%Je beschrijft ook al welke tools (hardware, software, diensten, \ldots) je denkt hiervoor te gebruiken of te ontwikkelen.
+
+%Probeer ook een tijdschatting te maken. Hoe lang zal je met elke fase van je onderzoek bezig zijn en wat zijn de concrete \emph{deliverables} in elke fase?
 
 %---------- Verwachte resultaten ----------------------------------------------
-\section{Verwacht resultaat, conclusie}%
+\section{Verwachte resultaat}%
 \label{sec:verwachte_resultaten}
+%Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
 
-Hier beschrijf je welke resultaten je verwacht. Als je metingen en simulaties uitvoert, kan je hier al mock-ups maken van de grafieken samen met de verwachte conclusies. Benoem zeker al je assen en de onderdelen van de grafiek die je gaat gebruiken. Dit zorgt ervoor dat je concreet weet welk soort data je moet verzamelen en hoe je die moet meten.
+%Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
 
-Wat heeft de doelgroep van je onderzoek aan het resultaat? Op welke manier zorgt jouw bachelorproef voor een meerwaarde?
+%Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
 
-Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
+Het beoogde resultaat is een onderbouwde en herhaalbare aanpak voor branching en deployment die geschikt is voor gebruik binnen de IDz-omgeving van Securex. Deze benadering dient heldere richtlijnen te geven voor het werken met sectoren, het aanbrengen van aanpassingen en het gecontroleerd toepassen van code in diverse omgevingen.
+
+
+%De nieuwe laadpalen zijn verwacht om volledig op 5G te werken om aan te tonen welke in gebruik zijn of hoe lang ze al gebruikt worden. Camera's met nummerplaatherkenning zullen veel sneller met de slagbomen kunnen communiceren om wagens direct door te laten. Deze twee diensten hebben nut bij de overstap naar 5G omdat ze veel data gebruiken zoals beeld van de camera's en latentiegevoelig zijn. Slagbomen daarentegen hebben niet veel kritische functies of data nodig en bieden dus geen voordelen om naar 5G over te stappen. Ze kunnen op het huidige netwerk blijven. In Figuur 2 wordt een voorbeeldtabel weergegeven.
+
+
+%Zo zouden ze draadloos vanaf een afstand beheerst en gecontroleerd worden, zou er minder operationele kosten zijn door minder onderhoud, meer mogelijkheid zijn voor uitbreiding naar specifieke toepassingen en zou er een verhoging zijn in betrouwbaarheid en duurzaamheid van de nieuwe technologie. Bovendien wordt er een gedocumenteerde proof-of-concept opgesteld om toekomstige diensten en toestellen eenvoudig te implementeren.
+
+
+%\begin{figure*}
+%    \centering
+%    \includegraphics[width=\textwidth]{img/gantt.png}
+%    \caption{\label{fig:gantt}Gantt diagram met de verschillende fasen en milestones van het onderzoek.}
+%\end{figure*}
+
+
+
+
 
