@@ -27,7 +27,7 @@
 %Deze bachelorproef richt zich op de overstap van bekabelde apparatuur en wifi van de parking naar het 5G-netwerk voor facilitair beheer van Hogeschool Gent en biedt services aan zoals computerhosting dankzij de Virtual IT Company. Momenteel draaien de diensten zoals klimaatbeheersing, inbraakbeveiliging, branddetectie, verlichting, toegangscontrole en CO-metingen op een traditioneler, bekabeld netwerk. Het probleem is echter dat er zowel veel druk op het huidige netwerk gezet wordt door een groeiend aantal applicaties als dat veel apparaten ook een internetverbinding nodig hebben, en heel wat van deze diensten via de cloud beheerd moeten worden. Ook flexibiliteit wordt beperkt door de fysieke bekabeling, wat leidt tot uitdagingen in beheer en schaalbaarheid, en de onderhoudskosten zijn niet optimaal. Voor de migratie naar het nieuwe netwerk komen er ook vragen, zoals welke diensten momenteel negatief geïmpacteerd worden door het gebruik van het bekabelde systeem en in welke mate, welke van deze diensten gemigreerd kunnen worden en wat de implicaties hiervan zijn. Deze bachelorproef wil een antwoord op die vragen geven.
 
 \subsection{Probleemstelling en onderzoeksvraag}
-Deze bachelorproef richt zich op het onderzoek over deploymentprocedures van branches voor Securex mainframes. Het Europees bedrijf biedt HR-diensten enn sociale administratie aan voor zelfstandigen, werkgevers en organisaties. Het ondersteunt deze bedrijven met het beheer van personeel, loonadministratie, sociale verplichtingen en meer. Deze diensten steunen op kritische applicaties waarbij stabiliteit, traceerbaarheid en codewijzigingen essentieel zijn. 
+Deze bachelorproef richt zich op het onderzoek over deploymentprocedures van branches voor Securex mainframes. Het Europees bedrijf biedt HR-diensten en sociale administratie aan voor zelfstandigen, werkgevers en organisaties. Het ondersteunt deze bedrijven met het beheer van personeel, loonadministratie, sociale verplichtingen en meer. Deze diensten steunen op kritische applicaties waarbij stabiliteit, traceerbaarheid en codewijzigingen essentieel zijn. 
 
 Het probleem is dat deze diensten draaien op de inflexibele Subversion als versiebeheersysteem, het biedt beperkte ondersteuning voor branch- en mergebeheer, waardoor parallel ontwikkelen en gecontroleerd deployen moeilijk maakt. Securex wil hiervan afbouwen en over schakelen naar Git waar branch en merge capabilities mogelijk zijn. Echter roept de implementatie nog verschillende vragen op, met name op het vlak van een geschikte branchingstrategie en het aanpassen van de huidige deploymentprocedures naar een branch-gebaseerde manier binnen de mainframecontext. Op basis van deze probleemstelling komt de onderzoeksvraag: ``hoe kan Git-branching binnen IDz worden ingezet voor gecontroleerde en traceerbare deployments over meerdere omgevingen?''.
 
@@ -35,17 +35,18 @@ Het probleem is dat deze diensten draaien op de inflexibele Subversion als versi
 %Echter, de implementatie roept verschillende vragen op, zoals welke diensten voorlopig operationele beperkingen ondervinden door het gebruik van het traditionele netwerk, welke diensten geschikt zijn voor overstap en of er een impact bestaat op de bestaande infrastructuur. Ook de voordelen en nadelen hiervan zijn nog niet volledig in kaart gebracht. Op basis van deze probleemstelling komt de onderzoeksvraag: ''welke bestaande apparatuur op de parking van Hogeschool Gent kan geëmigreerd worden met 5G?''
 
 \subsection{Subvragen}
-- Welke Git-branchingstrategieën zijn geschikt? \\
-- Hoe beïnvloedt werken met branches de deploymentprocedures? \\
-- Hoe wordt deze gepusht door development, testing en accept? \\
-- Is het mogelijk om op dat moment bij te houden wat waar zit? \\
+Bij de hoofdonderzoeksvraag komen er nog meerdere deelvragen bij. Eerst wordt er nagegaan welke Git-branchingstrategieën het meest geschikt zijn voor gebruik binnen de IDz-omgeving van Securex. Vervolgens wordt onderzocht hoe het werken met branches de deploymentprocedures beïnvloedt. Er wordt ook geanalyseerd hoe de codewijzigingen op een gecontroleerde manier doorgevoerd kunnen worden over de verschillende development-, testing- en acceptatieomgevingen. Ook wordt er onderzocht in welke mate het mogelijk is om op het moment te zien welke codeversie in welke omgeving zicht bevindt.
+
+%- Welke Git-branchingstrategieën zijn geschikt? \\
+%- Hoe beïnvloedt werken met branches de deploymentprocedures? \\
+%- Hoe wordt deze gepusht door development, testing en accept? \\
+%- Is het mogelijk om op dat moment bij te houden wat waar zit? \\
 
 \subsection{Doelgroep}
 Primaire doelgroep is Securex en de gebruikers daarvan. De secundaire groep zijn mainframe bedrijven die een gelijkaardige overstap overwegen of al hebben gemaakt.
 
 \subsection{Onderzoeksdoelstelling}
-Voor de doelstelling wordt er een reproduceerbare Git deploymentaanpaak ontworpen en geevalueerd, die bijdraagt aan beter versiebeheer en gecontroleerde deployments binnen IDz, waaronder verbetering van versiebeheer, ondersteuning aan consistente deployments en een mogelijkheid voor geschiedenis in de wijzigingen van de code. Dit kan ook verder gebruikt worden voor inzicht van het werken met Git-branches in de mainframe en kan als basis dienen voor toekomstige implementaties en verbeteringen voor Securex.
-
+Voor de doelstelling wordt er een reproduceerbare Git deploymentaanpak ontworpen en geëvalueerd, die bijdraagt aan beter versiebeheer en gecontroleerde deployments binnen IDz, waaronder verbetering van versiebeheer, ondersteuning aan consistente deployments en een mogelijkheid voor geschiedenis in de wijzigingen van de code. Dit kan ook verder gebruikt worden voor inzicht van het werken met Git-branches in het mainframe en kan als basis dienen voor toekomstige implementaties en verbeteringen voor Securex.
 
 %Voor de doelstelling wordt er een rapport opgesteld waarin veiligheidsimplicaties, impact op resources en de prestatie vastgesteld worden bij de migratie naar 5G. Hiermee zal het onderzoek, met een nadruk op het beheer en draaien van de diensten via het internet, de mogelijkheid en de voordelen van het netwerk evalueren ten opzichte van de bestaande infrastructuur. Daarnaast zal er ook een documentatie bijgehouden worden van alle stappen van de implementatie. Zo kan er een proof-of-concept gemaakt worden met de efficiëntie van het 5G-netwerk. Zo kunnen er verdere beslissingen genomen worden door Hogeschool Gent in verband met netwerk uitbreidingen.
 
@@ -61,39 +62,27 @@ Voor de doelstelling wordt er een reproduceerbare Git deploymentaanpaak ontworpe
 
 \section{Literatuurstudie}%
 \label{sec:literatuurstudie}
-\subsection{Introductie Git}
-
-Git is een open-source en gratis gedistribueerd versiebeheersysteem dat gebruikt wordt voor het opvolgen van wijzigingen in code en digitale bestanden. Vergeleken met Apache's gecentraliseerde versiebeheersysteem Subversion dat Securex momenteel gebruikt, kan er gewerkt worden met lokale kopies voor ontwikkelaars. Wijzigingen kunnen lokaal getest en gedraait worden, wat flexibiliteit verhoogt gezien er geen verbinding nodig is met een centrale server. Een kern van Git zijn de branches: ze maken het mogelijk om parallel aan de code te werken zonder dat de basis beïnvloed wordt dankzij merging. Dit laat ze toe om afzonderlijk ontwikkeld te worden om daarna aan de basis toegevoegd te worden. Ook volgt Git elke wijziging op, zodat een geschiedenis beschikbaar is.
 
 \subsection{Securex}
-Securex draait momenteel op hun mainframes Apache's Subversion, een gecentraliseerde versiebeheersysteem. Ze verwachten om dit jaar een pilot-migratie van Subversion naar Git.
+Securex draait momenteel op hun mainframes Apache's Subversion, een gecentraliseerde versiebeheersysteem. Ze verwachten voor dit jaar een pilot-migratie van Subversion naar Git. 
+
+\subsection{Introductie mainframes}
+Mainframes zijn computers die bekend staan voor het verwerken van grote hoeveelheden transacties en data, met nadruk op betrouwbaarheid en beschikbaarheid. Ze draaien uptimes zonder onderbrekingen, waarin ze een groot aantal van gebruikers en processen moeten kunnen ondersteunen. Dit dankzij redundantie en betrouwbare fallbacks. Hun software zijn gespecialiseerde besturingssystemen zoals IBM's z/OS en talen zoals COBOL. De applicaties worden vaak monolithisch opgebouwd en geïntegreerd met databanken en transactie-verwerkende systemen. Hierdoor zijn wijzigingen aan de code doorgaans complex en risicovol, wat strikte controle over versiebeheer en deployments vereist.
+Hoewel mainframes in het algemeen steeds minder aangeschaft worden, groeit er per jaar een 3 procent aan Cobol code in productie (\cite{Barnett2005}).
+
+\subsection{Introductie Git}
+Git is een open-source en gratis gedistribueerd versiebeheersysteem dat gebruikt wordt voor het opvolgen van wijzigingen in code en digitale bestanden. Vergeleken met Apache's gecentraliseerde versiebeheersysteem Subversion dat Securex momenteel gebruikt, kan er gewerkt worden met lokale kopieën voor ontwikkelaars. Wijzigingen kunnen lokaal getest en gedraaid worden, wat flexibiliteit verhoogt gezien er geen verbinding nodig is met een centrale server. Een kern van Git zijn de branches: ze maken het mogelijk om parallel aan de code te werken zonder dat de basis beïnvloed wordt dankzij merging. Dit laat ze toe om afzonderlijk ontwikkeld te worden om daarna aan de basis toegevoegd te worden. Ook volgt Git elke wijziging op, zodat een geschiedenis beschikbaar is. 
+
+\subsection{Git hosting}
+Omdat Git open-source is, bestaan er verschillende hosting services voor project management. Dit zorgt voor een centrale locatie voor de repositories, waardoor versiebeheer en project management makkelijker wordt. GitHub is een populaire site dat code management biedt, zoals pull requests, reviews, en het maken van public en private repositories. Dit promoveert teamwerk en helpt met project management, het CI/CD en de integratie van de code (\cite{Ghodke2024}). GitLab is een DevOps platform met een geautomatiseerde build, test en deployment dankzij hun geïntegreerde CI/CD pipeline. Ook bestaat Bitbucket, een Git repospitory management tool dat kan integreren met Jira en Trello. Deze heeft ook een ingebouwde CI/CD pipeline, de Bitbucket Pipelines.
 
 \subsection{Branches Git}
+Een branch workflow gebruikt een-op-afstand branches met doelen, zoals een feature branch, een branch voor integratie en een main branch. Het doel van een branch is om deze wijzigingen aan de code aan te vullen aan de main branch (\cite{Lopes2025}).
+De drie meest gebruikte branching modellen zijn Gitflow, Gitflow Workflow en Oneflow. Ze proberen alle drie verschillende problemen op te lossen binnen software development (\cite{Uppala2024}). Gitflow biedt een gestructureerde framework voor parallel development, releases en hotfixes. Hoewel het populair is, is het inflexibel in het model en kan tot problemen leiden. Gitflow Workflow biedt een meer flexibele manier van Gitflow, het behoudt de principes maar vereenvoudigt het proces voor meer dynamische workflows. Git OneFlow biedt een minimalistische aanpak aan door branching te verminderen via CI/CD gebruik.
 
-
-
-%Draadloze netwerken bieden meer vrijheid op het vlak van flexibiliteit, schaalbaarheid en beheerbaarheid. Deze netwerken zijn meestal verbonden met het internet en de toestellen worden 'Internet of Things' genoemd. Dankzij protocollen zoals Wi-Fi, Zigbee en Bluetooth worden deze toestellen automatisch toegevoegd aan een bestaand netwerk zonder veel input van een mens (\cite{Kasubi2021}). Dankzij een verbinding kunnen er toestellen zoals lichten, vergrendelingen, camera's en verwarming geautomatiseerd en draadloos beheerd worden. Dit kan bijvoorbeeld het voordeel geven dat de eigenaar zijn oprit bekijkt via een camera, terwijl hij ver van huis is. Ook dankzij Internet of Things kan er gemakkelijk naar het verbruik van elektriciteit gekeken worden en kan verwarming geautomatiseerd worden.
-
-%\subsection{Hogeschool Gent}
-%Voorlopig draait Hogeschool Gent op een traditioneel bekabeld en wifi-netwerk. In 2025 zijn ze begonnen met het installeren van zowel een privaat als publiek 5G-netwerk, met de hoop dat facultaire diensten op dit nieuwe netwerk zullen draaien. Deze diensten zijn en worden door meerdere firma's verkocht en onderhouden, maar Hogeschool Gent zou willen overstappen naar een universeel, open-source netwerk. De diensten die apart moeten draaien, zitten in aparte VLANs. Hogent hoopt dat deze in slices gezet kunnen worden, in plaats van complexe VLANs.
-%De liften van de campussen draaien momenteel op 2G, in 2027 worden ze verplicht door de EU om op minstens 4G te draaien. Deze zijn onder andere belangrijk voor spraakbellen en bereik (als mensen vastzitten). Deze 66 liften worden per maand gecontroleerd voor onderhoud.
-%Hun energiemonitoring zit ook nog in een opstartfase en ze zouden een systeem willen waar ze kunnen inloggen via 1 IP-adres om alles te kunnen zien, waaronder bijvoorbeeld het verbruik en de opbrengst van de zonnepanelen. Voorlopig zijn dit aparte systemen.
-%Hun bewaking staat ook nog in opstartfase met Securitas en ze zouden een manier willen om coördinaten te kunnen geven aan de bewakers tijdens een incident.
-%De brandbewaking staat ook onder verschillende platformen en leveranciers, de VLAN spreekt wel 1 beheerssysteem aan. Dit wordt gecommuniceerd door serial-to-IP-converters.
-%Een grote vraag is ook welke gebouwen en plaatsen 5G-verbinding kunnen verkrijgen, veel gebouwen zijn oud en kunnen slecht bereik hebben. Ook ligt veel apparatuur op afgelegen plaatsen, zoals kelders.
-
-%\subsection{Het traditionele netwerk}
-%Momenteel wordt onder het 'traditionele netwerk' vooral verwezen naar het bekabelde netwerk en verouderde draadloze protocollen zoals 4G of Wi-Fi 5. Bij het bekabelde netwerk ligt de problematiek voor Internet of Things vooral in dat deze toestellen eerder draadloos zijn, waardoor bekabeling het nut vermindert of zelfs volledig belemmert. Er zijn natuurlijk ook gevallen waarin een kabel juist belangrijk is voor veiligheid en betrouwbaarheid, zoals bij beveiligingscamera's. Voorlopig wordt het gebruik van 5G voor veiligheid in deze specifieke gevallen in vraag gesteld door bedrijfstakken (\cite{Zhao2021}). Door de opkomst van nieuwe generaties zoals 5G en Wi-Fi 6 willen bedrijven overschakelen van 4G of Wi-Fi 5. Deze oudere protocollen bieden te weinig bandbreedte en te hoge latentie voor bedrijfskritische applicaties, zoals het gebruik van augmented reality, virtual reality, holografie en robotica (\cite{Le2016}).
-
-%\subsection{5G}
-%Over de afgelopen jaren zijn deze draadloze protocollen voortdurend verbeterd. Hoewel er nog moeilijkheden zijn in specifieke gevallen, probeert 5G een oplossing te bieden op het gebied van lage latentie, hoge snelheid, verbeterde betrouwbaarheid, efficiëntie, verbindings- en capaciteitsdichtheid en laag energieverbruik (\cite{Ullah2019}). Met de opgesomde oplossingen wordt 5G in de medische sector gebruikt voor infrastructuur en robotchirurgie (\cite{Georgiou2021}), biedt het in de militaire wereld onafhankelijke communicatiemogelijkheid tussen machines aan (\cite{Bhardwaj2020}), satellietinternet voor gebieden zonder netwerk (\cite{Dangi2021}) en het gebruik van draadloze voertuigen (\cite{Dangi2021}).
-
-%\subsection{Network splicing}
-%Met 5G wordt ook network slicing geïntroduceerd: het fysieke netwerk kan in meerdere logische netwerkslices verdeeld worden die unieke specificaties krijgen en voor specifieke doeleinden gebruikt worden, zoals een beveiligingsnetwerk specifiek voor camera's en vergrendelingen van deuren. Hierdoor worden er alleen de benodigde resources gebruikt en zijn ze vrij voor andere slices (\cite{Wijethilaka2021}).
-%Bij het traditionele netwerk worden Virtual LANs gebruikt die het netwerk ook verdelen. Hier wordt wel alleen laag 2 gebruikt, in plaats van de volledige netwerkstack. Via network splicing is het ook mogelijk om dynamisch resources te vergroten of te verkleinen, afhankelijk van de use case. Het is ook mogelijk om de gescheiden services te leveren, zoals Enhanced Mobile Broadband, Ultra-Reliable Low-Latency Communications en Massive Machine-Type Communications.
-
-%5G introductie, use cases; wordt momenteel in de wereld gebruikt voor 
-%5G Network Slicing
+\subsection{Deployment strategie}
+Een belangrijke basis voor moderne software development gebruikt Continuous Integration and Continuous Deployment (CI/CD) als basis. De CI zorgt ervoor dat alle code van verschillende ontwikkelaars automatisch geïntegreerd wordt in een centrale repository en elke verandering zorgt voor een automatische compatibiliteits-test. De CD deployt automatisch de werkende builds. Deze strategie zorgt voor tijdswinst door automatisatie omdat ontwikkelaars zelf niet meer handmatig moeten ingrijpen (\cite{Gowda2022}). 
+Canary release is een strategie waarbij een nieuwe versie van de applicatie geleidelijk wordt uitgerold naar een beperkte set van gebruikers, voordat deze beschikbaar wordt gemaakt voor de gehele productieomgeving. Een belangrijke voordeel is het beperken van risico's door vroegtijdige detectie.
 
 %Hier beschrijf je de \emph{state-of-the-art} rondom je gekozen onderzoeksdomein, d.w.z.\ een inleidende, doorlopende tekst over het onderzoeksdomein van je bachelorproef. Je steunt daarbij heel sterk op de professionele \emph{vakliteratuur}, en niet zozeer op populariserende teksten voor een breed publiek. Wat is de huidige stand van zaken in dit domein, en wat zijn nog eventuele open vragen (die misschien de aanleiding waren tot je onderzoeksvraag!)?
 
@@ -120,16 +109,19 @@ Securex draait momenteel op hun mainframes Apache's Subversion, een gecentralise
 
 %Voor dit onderzoek zal ik voornamelijk literatuurstudies, vergelijkende studies en experimenten of simulaties uitvoeren. Hiervoor ga ik waarschijnlijk ook hands-on aan de diensten van Hogeschool Gent zitten en bestuderen wat haalbaar is voor 5G en wat niet. Voor de tools zou het de diensten zijn, een fysieke Windows 11 laptop en mogelijks virtual machines. Dan zal hieruit uiteindelijk een proof-of-concept en een simulatie gemaakt worden.
 
+Dit onderzoek is opgedeeld in drie grote fasen, beginnend met de stand van zaken.
+
 \paragraph{Fase 1}
-Dit onderzoek is opgedeeld in drie grote fasen, beginnend met de stand van zaken. In deze fase wordt een inleiding gemaakt voor Git en branching, met focus op deploymentprocessen, zo worden bestaande modellen en best practices onderzocht. Ook wordt er gekeken naar de huidige situatie over de mainframes van Securex. Dit resulteert in kennis van de huidige opstelling en situatie over Securex en Subversion.
+In deze fase wordt een inleiding gemaakt voor Git en branching, met focus op deploymentprocedures, zo worden bestaande modellen en best practices onderzocht. Ook wordt er gekeken naar de huidige situatie over de mainframes van Securex. Dit resulteert in kennis van de huidige opstelling en situatie over Securex en Subversion.
 
 %Dit onderzoek is opgedeeld in drie grote fasen, beginnend met de stand van zaken. In deze fase wordt een inleiding gemaakt tot 5G samen met een overzicht van de bestaande diensten van het facilitair beheer van Hogeschool Gent. Dit resulteert in kennis van de huidige infrastructuur en situatie van Hogeschool Gent en 5G. Dit zal normaliter in lesweek 6 voor de belangrijkste zaken al compleet zijn, maar er kunnen nog altijd toevoegingen komen, afhankelijk van het onderzoeksverloop. Ten minste 2 interviews met dienst infrastructuur en een duidelijke situering van de huidige situatie van de parking.
 \paragraph{Fase 2}
-In de tweede fase wordt op basis van de bevindingen uit de literatuurstudie en context van Securex een Git-branchingstrategie ontworpen die aansluit bij  mainframe-omgeving. Hier worden er ook deploymentprocedures uitgewerkt die rekening houden met de noden van Securex en de doorstroom van de code. Hier wordt er ook een praktische proof-of-concept gemaakt en klein-schalig uitgevoerd in een testopstelling. 
+In de tweede fase wordt op basis van de bevindingen uit de literatuurstudie en context van Securex een Git-branchingstrategie ontworpen die aansluit bij de mainframe-omgeving. Hier worden er ook deploymentprocedures uitgewerkt die rekening houden met de vereisten van Securex en de doorstroom van de code. Hier wordt er ook een praktische proof-of-concept gemaakt en klein-schalig uitgevoerd in een testopstelling. 
 
 %In de tweede fase bekijkt de onderzoeker de mogelijkheden van het 5G-netwerk, dat sinds kort beschikbaar is op de campus. Er wordt gekeken welke diensten geschikt zijn om over te zetten naar 5G en welke voordelen deze kan bieden. Hier wordt gekeken via selectie op basis van criteria zoals latency-eisen, bandbreedte en vereisten voor draadloze connectie. Hieruit wordt een tabel gemaakt met criteria zoals mogelijkheid draadloos, welke functies naar 5G kunnen gezet worden en hoeveel bandbreedte het verbruikt. Elke dienst krijgt een score, en als die meer dan 50 procent gemiddeld haalt, zal die bijgehouden worden voor de migratie naar 5G. Figuur 2 toont van deze tabel een voorbeeld. De deliverable vereist ten minste 2 diensten die bijgehouden worden. Compleet tegen lesweek 9, maar kan ook nog altijd meer diensten bijnemen.
+
 \paragraph{Fase 3}
-In de derde fase wordt de ontworpen aanpak geëvalueerd op basis van vooraf gedefinieerde criteria, zoals reproduceerbaarheid, traceerbaarheid, beheersbaarheid en impact op het deploymentproces. De resultaten van de proof of concept of testopstelling worden geanalyseerd en vergeleken met de oorspronkelijke situatie. 
+In de derde fase wordt de ontworpen aanpak geëvalueerd op basis van vooraf gedefinieerde criteria, zoals reproduceerbaarheid, traceerbaarheid, beheersbaarheid en impact op het deploymentproces. De resultaten van de proof of concept of testopstelling worden geanalyseerd en vergeleken met de oorspronkelijke situatie.\\
 
 Op basis van deze evaluatie worden conclusies geformuleerd en aanbevelingen gedaan voor verdere optimalisatie en mogelijke implementatie binnen Securex.
 
@@ -161,7 +153,7 @@ Op basis van deze evaluatie worden conclusies geformuleerd en aanbevelingen geda
 
 %Hier beschrijf je wat je verwacht uit je onderzoek, met de motivatie waarom. Het is \textbf{niet} erg indien uit je onderzoek andere resultaten en conclusies vloeien dan dat je hier beschrijft: het is dan juist interessant om te onderzoeken waarom jouw hypothesen niet overeenkomen met de resultaten.
 
-Het beoogde resultaat is een onderbouwde en herhaalbare aanpak voor branching en deployment die geschikt is voor gebruik binnen de IDz-omgeving van Securex. Deze benadering dient heldere richtlijnen te geven voor het werken met sectoren, het aanbrengen van aanpassingen en het gecontroleerd toepassen van code in diverse omgevingen.
+Het beoogde resultaat is een onderbouwde en herhaalbare aanpak voor branching en deployment die geschikt is voor gebruik binnen de IDz-omgeving van Securex. Deze benadering dient heldere richtlijnen te geven voor het werken met sectoren, het aanbrengen van aanpassingen en het gecontroleerd toepassen van code in diverse omgevingen. Er wordt verwacht dat dit bijdraagt aan een verhoogde traceerbaarheid van de code, waardoor op elk moment inzicht kan verkregen worden in welke versie van de code in welke omgeving actief is.
 
 
 %De nieuwe laadpalen zijn verwacht om volledig op 5G te werken om aan te tonen welke in gebruik zijn of hoe lang ze al gebruikt worden. Camera's met nummerplaatherkenning zullen veel sneller met de slagbomen kunnen communiceren om wagens direct door te laten. Deze twee diensten hebben nut bij de overstap naar 5G omdat ze veel data gebruiken zoals beeld van de camera's en latentiegevoelig zijn. Slagbomen daarentegen hebben niet veel kritische functies of data nodig en bieden dus geen voordelen om naar 5G over te stappen. Ze kunnen op het huidige netwerk blijven. In Figuur 2 wordt een voorbeeldtabel weergegeven.
