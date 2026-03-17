@@ -6,46 +6,87 @@
 % bijzonder aan wat de link is met het vorige en volgende hoofdstuk.
 
 % Pas na deze inleidende paragraaf komt de eerste sectiehoofding.
+\subsection{Introductie mainframes}
+Mainframes zijn computers die bekend staan voor het verwerken van grote hoeveelheden transacties en data, met nadruk op betrouwbaarheid en beschikbaarheid. Ze draaien uptimes zonder onderbrekingen, waarin ze een groot aantal van gebruikers en processen moeten kunnen ondersteunen. Dit dankzij redundantie en betrouwbare fallbacks. Hun software zijn gespecialiseerde besturingssystemen zoals IBM's z/OS en talen zoals COBOL. De applicaties worden vaak monolithisch opgebouwd en geïntegreerd met databanken en transactie-verwerkende systemen. Hierdoor zijn wijzigingen aan de code doorgaans complex en risicovol, wat strikte controle over versiebeheer en deployments vereist.
+Hoewel mainframes in het algemeen steeds minder aangeschaft worden, groeit er per jaar een 3 procent aan Cobol code in productie (\cite{Barnett2005}).
 
-Dit hoofdstuk bevat je literatuurstudie. De inhoud gaat verder op de inleiding, maar zal het onderwerp van de bachelorproef *diepgaand* uitspitten. De bedoeling is dat de lezer na lezing van dit hoofdstuk helemaal op de hoogte is van de huidige stand van zaken (state-of-the-art) in het onderzoeksdomein. Iemand die niet vertrouwd is met het onderwerp, weet nu voldoende om de rest van het verhaal te kunnen volgen, zonder dat die er nog andere informatie moet over opzoeken \autocite{Pollefliet2011}.
+\subsection{Securex}
+%Securex draait momenteel op hun mainframes Apache's Subversion, een gecentraliseerde versiebeheersysteem. Ze verwachten voor dit jaar een pilot-migratie van Subversion naar Git. 
 
-Je verwijst bij elke bewering die je doet, vakterm die je introduceert, enz.\ naar je bronnen. In \LaTeX{} kan dat met het commando \texttt{$\backslash${textcite\{\}}} of \texttt{$\backslash${autocite\{\}}}. Als argument van het commando geef je de ``sleutel'' van een ``record'' in een bibliografische databank in het Bib\LaTeX{}-formaat (een tekstbestand). Als je expliciet naar de auteur verwijst in de zin (narratieve referentie), gebruik je \texttt{$\backslash${}textcite\{\}}. Soms is de auteursnaam niet expliciet een onderdeel van de zin, dan gebruik je \texttt{$\backslash${}autocite\{\}} (referentie tussen haakjes). Dit gebruik je bv.~bij een citaat, of om in het bijschrift van een overgenomen afbeelding, broncode, tabel, enz. te verwijzen naar de bron. In de volgende paragraaf een voorbeeld van elk.
+Het Securex COBOL Team verwacht dit jaar een pilot-migratie naar Git, maar draait momenteel zijn development-, test-, acceptatie- en productie-omgevingen op Apache's Subversion. Dit is een gecentraliseerde versiebeheersysteem dat branching toelaat. In het COBOL Team wordt er geen branching gebruikt, maar file-locking. Dit betekent wanneer een bestand aangepast wordt door een developer, dat een andere developer er niet aan kan en moet wachten tot dit bestand vrij komt. Dit is de tegenovergestelde manier van branching en is inefficiënt.
 
-\textcite{Knuth1998} schreef een van de standaardwerken over sorteer- en zoekalgoritmen. Experten zijn het erover eens dat cloud computing een interessante opportuniteit vormen, zowel voor gebruikers als voor dienstverleners op vlak van informatietechnologie~\autocite{Creeger2009}.
+\subsection{Versiebeheer}
+Versiebeheer (versioning) is een systeem dat de wijzigingen in de code volgt en beheert. Dit laat ontwikkelaars toe om een historiek bij te houden van veranderingen, het terugdraaien naar voorafgaande versies en op hetzelfde moment aan eenzelfde bestand en/of project te werken. De eerste manier is lokaal versiebeheer, waarin de gebruiker bestanden kopieert naar een andere map en daarin verder werkt. Deze manier van werken is simpel en werkt goed voor solo-projecten, maar is foutgevoelig omdat het snel mogelijk wordt dat de gebruiker per ongeluk de foute bestanden overschrijft (\cite{Chacon2014}). Er bestaan ook software voor lokaal versiebeheer waarbij het de verschillende versies van het bestand bijhoudt, zoals Revision Control System.
 
-Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je verwijst meteen naar een bron in de eerste zin die erop gebaseerd is, dus niet pas op het einde van een paragraaf.
 
-\begin{figure}
-  \centering
-  \includegraphics[width=0.8\textwidth]{grail.jpg}
-  \caption[Voorbeeld figuur.]{\label{fig:grail}Voorbeeld van invoegen van een figuur. Zorg altijd voor een uitgebreid bijschrift dat de figuur volledig beschrijft zonder in de tekst te moeten gaan zoeken. Vergeet ook je bronvermelding niet!}
-\end{figure}
-
-\begin{listing}
-  \begin{minted}{python}
-    import pandas as pd
-    import seaborn as sns
-
-    penguins = sns.load_dataset('penguins')
-    sns.relplot(data=penguins, x="flipper_length_mm", y="bill_length_mm", hue="species")
-  \end{minted}
-  \caption[Voorbeeld codefragment]{Voorbeeld van het invoegen van een codefragment.}
-\end{listing}
-
-\lipsum[7-20]
 
 \begin{table}
   \centering
   \begin{tabular}{lcr}
-    \toprule
-    \textbf{Kolom 1} & \textbf{Kolom 2} & \textbf{Kolom 3} \\
-    $\alpha$         & $\beta$          & $\gamma$         \\
-    \midrule
-    A                & 10.230           & a                \\
-    B                & 45.678           & b                \\
-    C                & 99.987           & c                \\
-    \bottomrule
-  \end{tabular}
-  \caption[Voorbeeld tabel]{\label{tab:example}Voorbeeld van een tabel.}
+        \toprule
+        \textbf{Lokaal versiebeheer} & \textbf{Gecentraliseerd versiebeheer} & \textbf{Gedistribueerd versiebeheer} \\
+        \midrule
+        A                & 10.230           & a                \\
+        B                & 45.678           & b                \\
+        C                & 99.987           & c                \\
+        \bottomrule
+      \end{tabular}
+  \caption[Versiebeheertabel]{\label{tab:example}De drie manieren van versiebeheer.}
 \end{table}
+
+\subsection{Introductie Git}
+Git is een open-source en gratis gedistribueerd versiebeheersysteem dat gebruikt wordt voor het opvolgen van wijzigingen in code en digitale bestanden. Vergeleken met Apache's gecentraliseerde versiebeheersysteem Subversion dat Securex momenteel gebruikt, kan er gewerkt worden met de lokale omgevingen voor ontwikkelaars. Wijzigingen kunnen lokaal getest en gedraaid worden, wat flexibiliteit verhoogt gezien er geen verbinding nodig is met een centrale server. Een kern van Git zijn de branches: ze maken het mogelijk om parallel aan de code te werken zonder dat de basis beïnvloed wordt dankzij merging. Dit laat ze toe om afzonderlijk ontwikkeld te worden om daarna aan de basis toegevoegd te worden. Ook volgt Git elke wijziging op, zodat een geschiedenis beschikbaar is. 
+
+\subsection{Git hosting}
+Omdat Git open-source is, bestaan er verschillende hosting services voor project management. Dit zorgt voor een centrale locatie voor de repositories, waardoor versiebeheer en project management makkelijker wordt. GitHub is een populaire site dat code management biedt, zoals pull requests, reviews, en het maken van public en private repositories. Dit promoveert teamwerk en helpt met project management, het CI/CD en de integratie van de code (\cite{Ghodke2024}). GitLab is een DevOps platform met een geautomatiseerde build, test en deployment dankzij hun geïntegreerde CI/CD pipeline. Ook bestaat Bitbucket, een Git repospitory management tool dat kan integreren met Jira en Trello. Deze heeft ook een ingebouwde CI/CD pipeline, de Bitbucket Pipelines.
+
+\subsection{Branches Git}
+Een branch workflow gebruikt een-op-afstand branches met doelen, zoals een feature branch, een branch voor integratie en een main branch. Het doel van een branch is om deze wijzigingen aan de code aan te vullen aan de main branch (\cite{Lopes2025}).
+De drie meest gebruikte branching modellen zijn Gitflow, Gitflow Workflow en Oneflow. Ze proberen alle drie verschillende problemen op te lossen binnen software development (\cite{Uppala2024}). Gitflow biedt een gestructureerde framework voor parallel development, releases en hotfixes. Hoewel het populair is, is het inflexibel in het model en kan tot problemen leiden. Gitflow Workflow biedt een meer flexibele manier van Gitflow, het behoudt de principes maar vereenvoudigt het proces voor meer dynamische workflows. Git OneFlow biedt een minimalistische aanpak aan door branching te verminderen via CI/CD gebruik.
+
+\subsection{Deployment strategie}
+Een belangrijke basis voor moderne software development gebruikt Continuous Integration and Continuous Deployment (CI/CD) als basis. De CI zorgt ervoor dat alle code van verschillende ontwikkelaars automatisch geïntegreerd wordt in een centrale repository en elke verandering zorgt voor een automatische compatibiliteits-test. De CD deployt automatisch de werkende builds. Deze strategie zorgt voor tijdswinst door automatisatie omdat ontwikkelaars zelf niet meer handmatig moeten ingrijpen (\cite{Gowda2022}). 
+Canary release is een strategie waarbij een nieuwe versie van de applicatie geleidelijk wordt uitgerold naar een beperkte set van gebruikers, voordat deze beschikbaar wordt gemaakt voor de gehele productieomgeving. Een belangrijke voordeel is het beperken van risico's door vroegtijdige detectie.
+
+%Dit hoofdstuk bevat je literatuurstudie. De inhoud gaat verder op de inleiding, maar zal het onderwerp van de bachelorproef *diepgaand* uitspitten. De bedoeling is dat de lezer na lezing van dit hoofdstuk helemaal op de hoogte is van de huidige stand van zaken (state-of-the-art) in het onderzoeksdomein. Iemand die niet vertrouwd is met het onderwerp, weet nu voldoende om de rest van het verhaal te kunnen volgen, zonder dat die er nog andere informatie moet over opzoeken \autocite{Pollefliet2011}.
+
+%Je verwijst bij elke bewering die je doet, vakterm die je introduceert, enz.\ naar je bronnen. In \LaTeX{} kan dat met het commando \texttt{$\backslash${textcite\{\}}} of \texttt{$\backslash${autocite\{\}}}. Als argument van het commando geef je de ``sleutel'' van een ``record'' in een bibliografische databank in het Bib\LaTeX{}-formaat (een tekstbestand). Als je expliciet naar de auteur verwijst in de zin (narratieve referentie), gebruik je \texttt{$\backslash${}textcite\{\}}. Soms is de auteursnaam niet expliciet een onderdeel van de zin, dan gebruik je \texttt{$\backslash${}autocite\{\}} (referentie tussen haakjes). Dit gebruik je bv.~bij een citaat, of om in het bijschrift van een overgenomen afbeelding, broncode, tabel, enz. te verwijzen naar de bron. In de volgende paragraaf een voorbeeld van elk.
+
+%\textcite{Knuth1998} schreef een van de standaardwerken over sorteer- en zoekalgoritmen. Experten zijn het erover eens dat cloud computing een interessante opportuniteit vormen, zowel voor gebruikers als voor dienstverleners op vlak van informatietechnologie~\autocite{Creeger2009}.
+
+%Let er ook op: het \texttt{cite}-commando voor de punt, dus binnen de zin. Je verwijst meteen naar een bron in de eerste zin die erop gebaseerd is, dus niet pas op het einde van een paragraaf.
+
+%\begin{figure}
+ % \centering
+ % \includegraphics[width=0.8\textwidth]{grail.jpg}
+ % \caption[Voorbeeld figuur.]{\label{fig:grail}Voorbeeld van invoegen van een figuur. Zorg altijd voor een uitgebreid bijschrift dat de figuur volledig beschrijft zonder in de tekst te moeten gaan zoeken. Vergeet ook je bronvermelding niet!}
+%\end{figure}
+
+%\begin{listing}
+%  \begin{minted}{python}
+%    import pandas as pd
+%    import seaborn as sns
+
+%    penguins = sns.load_dataset('penguins')
+%    sns.relplot(data=penguins, x="flipper_length_mm", y="bill_length_mm", hue="species")
+%  \end{minted}
+%  \caption[Voorbeeld codefragment]{Voorbeeld van het invoegen van een codefragment.}
+%\end{listing}
+
+%\lipsum[7-20]
+
+%\begin{table}
+%  \centering
+%  \begin{tabular}{lcr}
+%    \toprule
+%    \textbf{Kolom 1} & \textbf{Kolom 2} & \textbf{Kolom 3} \\
+%    $\alpha$         & $\beta$          & $\gamma$         \\
+%    \midrule
+%    A                & 10.230           & a                \\
+%    B                & 45.678           & b                \\
+%    C                & 99.987           & c                \\
+%    \bottomrule
+%  \end{tabular}
+%  \caption[Voorbeeld tabel]{\label{tab:example}Voorbeeld van een tabel.}
+%\end{table}
 
